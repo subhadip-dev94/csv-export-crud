@@ -1,0 +1,56 @@
+<%- include("./layouts/header") %>
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1>Developer Lists With Export CSV Functionality</h1>
+        <p>Welcome! Here you can view, manage, and download information about all developers in your organization.</p>
+        <p>Browse the list below to see profiles, contact details, and resumes of our talented team members.</p>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between mb-3">
+        <div class="ms-auto">
+            <a href="/export-csv" class="btn btn-success">Export CSV</a>
+        </div>
+    </div>
+    <br>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>S.No.</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Age</th>
+                <th>Gender</th>  
+                <th>Address</th>  
+            </tr>
+        </thead>
+        <tbody>
+            <% if (allData && allData.length > 0) { %>
+                <% allData.forEach((emp, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= emp.fullName %></td>
+                        <td><%= emp.email %></td>
+                        <td><%= emp.phone %></td>
+                        <td><%= emp.age %></td>
+                        <td><%= emp.gender %></td>
+                        <td><%= emp.address %></td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="7" class="text-center">No data found</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <div class="text-center">
+        <a href="/add-dev" class="btn btn-primary">Add New Developer</a>
+    </div>
+</div>
+<br>
+<br>
+<%- include("./layouts/footer") %>
