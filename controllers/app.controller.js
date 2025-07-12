@@ -73,7 +73,8 @@ class AppController {
             const data = await EmpModel.find({ isDeleted: false }).lean();
 
             if (!data || data.length === 0) {
-                return res.status(404).send("No data available to export.");
+                console.log("No data available to export.");
+                return res.redirect("/");
             }
 
             // Format only required fields
